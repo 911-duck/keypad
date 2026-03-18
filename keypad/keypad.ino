@@ -15,10 +15,17 @@ String output = "";
 
 void loop() {
   char n = keypad.readChar();
-  if(n != '_'){
+  
+  if(n != '_' && n != '<'){
     output+=n;
     Serial.println("");
     Serial.println(output);
     Serial.println("");
+  }
+
+  if(n == '<'){
+    String new;
+    for(int i = 0; i < output.length()-1; i++) new += output[i];
+    output = new;
   }
 }
