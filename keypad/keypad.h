@@ -5,7 +5,6 @@ class Keypad {
   Keypad(int pinsA[4], int pinsB[4]);
   int read(int h, int w);
   char readChar();
-  char readSpecialChar(int read);
   private:
   int _pinsA[4];
   int _pinsB[4];
@@ -19,5 +18,8 @@ class Keypad {
     {'7','S','T','U'},
     {'8','V','W','X'},
     {'9','Y','Z','.'},
+    {'*','+','-','$'},
+    {'0',' ','-','/'},
+    {'@','#',';',':'},
   };
 };
