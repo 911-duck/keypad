@@ -45,10 +45,6 @@ int Keypad::read(int h, int w) {
   return x + y * h;
 }
 
-char Keypad::readSpecialChar(int read){
-  
-}
-
 char Keypad::readChar() {
   int readB = read(3,4);
 
