@@ -8,7 +8,7 @@ class Keypad {
   private:
   int _pinsA[4];
   int _pinsB[4];
-  const char _KEYS_TO_CHAR[9][3]={
+  const char _KEYS_TO_CHAR[9][4]={
     {'1','A','B','C'},
     {'2','D','E','F'},
     {'3','G','H','I'},
