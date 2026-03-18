@@ -10,7 +10,7 @@ Keypad::Keypad(int pinsA[4], int pinsB[4]) { // конструктор
 }
 
 int Keypad::read(int h, int w) { // чтение номера кнопки
-  for (int i = 0; i < h; i++) {
+  for (int i = 0; i < 4; i++) {
     pinMode(_pinsA[i], OUTPUT);
     pinMode(_pinsB[i], INPUT_PULLUP);
 
@@ -20,13 +20,14 @@ int Keypad::read(int h, int w) { // чтение номера кнопки
   int x = 0;
   for (int i = 0; i < h; i++) {
     digitalWrite(_pinsA[i], LOW);
-    for (int j = 0; j < maxS; j++) {
+    for (int j = 0; j < w; j++) {
       if (!digitalRead(_pinsB[j])) x = i + 1;
     }
     digitalWrite(_pinsA[i], HIGH);
+    delay(1);
   }
 
-  for (int i = 0; i < w; i++) {
+  for (int i = 0; i < 4; i++) {
     pinMode(_pinsB[i], OUTPUT);
     pinMode(_pinsA[i], INPUT_PULLUP);
 
@@ -36,10 +37,11 @@ int Keypad::read(int h, int w) { // чтение номера кнопки
   int y = 0;
   for (int i = 0; i < w; i++) {
     digitalWrite(_pinsB[i], LOW);
-    for (int j = 0; j < maxS; j++) {
+    for (int j = 0; j < h; j++) {
       if (!digitalRead(_pinsA[j])) y = i;
     }
     digitalWrite(_pinsB[i], HIGH);
+    delay(1);
   }
 
   return x + y * h;
@@ -62,8 +64,6 @@ char Keypad::readChar() { // получение символа
       n = (n + 1) % 4;
       delay(500);
       prev = millis();
-    }else if(read(3,4) != 0){ // если иная кнопка нажата
-      break;
     }
     const int x = n;
     result = _KEYS_TO_CHAR[y][x];
