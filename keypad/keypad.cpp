@@ -59,7 +59,7 @@ char Keypad::readChar() {
   long long prev = millis();
   while (millis() - prev < 1000) {
     if (read(3) == readB) {
-      n = (n + 1) % 3;
+      n = (n + 1) % 4;
       delay(500);
       prev = millis();
     }
