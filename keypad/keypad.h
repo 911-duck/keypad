@@ -15,7 +15,7 @@ class Keypad {
   private:
   int _pinsA[4]; // пины матрицы
   int _pinsB[4];
-  const char _KEYS_TO_CHAR[9][4]={ // символы
+  const char _KEYS_TO_CHAR[12][4]={ // символы
     {'1','A','B','C'},
     {'2','D','E','F'},
     {'3','G','H','I'},
