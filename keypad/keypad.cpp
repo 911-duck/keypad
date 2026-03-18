@@ -2,14 +2,14 @@
 #include "Arduino.h"
 #include "keypad.h"
 
-Keypad::Keypad(int pinsA[4], int pinsB[4]) {
+Keypad::Keypad(int pinsA[4], int pinsB[4]) { // конструктор
   for (int i = 0; i < 4; i++) {
     _pinsA[i] = pinsA[i];
     _pinsB[i] = pinsB[i];
   }
 }
 
-int Keypad::read(int h, int w) {
+int Keypad::read(int h, int w) { // чтение номера кнопки
   for (int i = 0; i < h; i++) {
     pinMode(_pinsA[i], OUTPUT);
     pinMode(_pinsB[i], INPUT_PULLUP);
@@ -45,24 +45,24 @@ int Keypad::read(int h, int w) {
   return x + y * h;
 }
 
-char Keypad::readChar() {
-  int readB = read(3,4);
+char Keypad::readChar() { // получение символа
+  int readB = read(3,4); // полученная кнопка
 
-  if (!readB) return '_';
+  if (!readB) return '_'; // нет нажатой кнопки
 
-  while (read(3,4));
+  while (read(3,4)); // пока не отпустим
 
   const int y = readB - 1;
   int n = 0;
 
   char result;
   long long prev = millis();
-  while (millis() - prev < 1000) {
-    if (read(3,4) == readB) {
+  while (millis() - prev < 1000) { // цикл ожидания повторного нажатия
+    if (read(3,4) == readB) { // повторное нажатие
       n = (n + 1) % 4;
       delay(500);
       prev = millis();
-    }else if(read(3,4) != 0){
+    }else if(read(3,4) != 0){ // если иная кнопка нажата
       break;
     }
     const int x = n;
