@@ -24,8 +24,6 @@ void loop() {
   }
 
   if(n == '<'){
-    String new;
-    for(int i = 0; i < output.length()-1; i++) new += output[i];
-    output = new;
+    output.remove(output.length()-1);
   }
 }
