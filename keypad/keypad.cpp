@@ -1,4 +1,3 @@
-#include "HardwareSerial.h"
 #include "Arduino.h"
 #include "keypad.h"
 
